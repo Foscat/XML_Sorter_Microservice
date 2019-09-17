@@ -14,7 +14,7 @@ module.exports = {
         let responseSender = res;
         console.log("**TCL: getFile -> fileString**", fileString);
     
-        fetch(`https://young-tundra-61907.herokuapp.com/${fileString}`).then(res => {
+        fetch(`https://intense-refuge-46310.herokuapp.com/${fileString}`).then(res => {
             return res.text();
         })
         .then(returnString => {

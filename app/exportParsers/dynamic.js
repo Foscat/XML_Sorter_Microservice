@@ -45,7 +45,9 @@ DynamicBulletinParser = async xmlObj => {
                             stepArray.push("Step: "+xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text[0]+xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text[1]);
                         }
                     }
+
                     fileInfo.stepArray = stepArray;
+                    
                 }
                 
             }
