@@ -21,32 +21,15 @@ module.exports = {
             // console.log("**TCL: getFile -> returnString**", returnString);
             let convertedFile = converter.xml2js(returnString, {compact: true, spaces: 4});
     
-            try{
-                if(fileString === "sb31038"){
-                    BullStep_Parser(convertedFile).then(sortedInfo=>{
-                        return responseSender.status(202).send(sortedInfo);
-                    })
-                }
-                if(fileString === "sb35034"){
-                    BullStepRef_Parser(convertedFile).then(sortedInfo=>{
-                        return responseSender.status(202).send(sortedInfo);
-                    })
-                }
-                if(fileString === "sb42073"){
-                    BullStepNote_Parser(convertedFile).then(sortedInfo=>{
-                        return responseSender.status(202).send(sortedInfo);
-                    });
-                }
-                else{
-                    DynamicBulletinParser(convertedFile).then(sortedInfo=>{
-                        return responseSender.status(202).send(sortedInfo);
-                    })
-                }
+            try{ 
+                DynamicBulletinParser(convertedFile).then(sortedInfo=>{
+                    return responseSender.status(202).send(sortedInfo);
+                })
             }
             catch{
                 // responseSender.status(404).send({problem: "The file name you send is was not reconized", attemptedFile: returnString});
                 console.log("Catch function hit");
-                // return "";
+                return responseSender.status(500).send({error:"Something went wrong."});
             }
     
         });

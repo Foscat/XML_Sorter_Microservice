@@ -12,7 +12,7 @@ DynamicBulletinParser = async xmlObj => {
     };
     // let sampleStep = new StepObject("this is a step", "this is my note", "this is a warning");
     // console.log("**TCL: lev 1 keys**", xmlObj);
-    // try {
+    try {
         for(let i=0; i < xmlObj.sb.lev1.length; i++){
 
             // Exclude info 
@@ -22,21 +22,39 @@ DynamicBulletinParser = async xmlObj => {
             }
             if(xmlObj.sb.lev1[i].lev1title._text === "General Safety Precautions"){
                 console.log(`There are safety precautions here (iteration num:${i}, text:${xmlObj.sb.lev1[i].lev1title._text})`);
-                fileInfo.steps.push(new StepObject(xmlObj.sb.lev1[i].lev1title._text, "in general info slot", "the title of the block"));
+                fileInfo.steps.push(new StepObject(xmlObj.sb.lev1[i].lev1title._text, "there are no steps here", "just warnings"));
                 // continue;
             }
             else{
                 console.log(`There is someting differant here (iteration num:${i}, text:${xmlObj.sb.lev1[i].lev1title._text})`);
-                fileInfo.steps.push(new StepObject(xmlObj.sb.lev1[i].lev1title._text, "Info", "for all other things"));
+                fileInfo.steps.push(new StepObject(xmlObj.sb.lev1[i].lev1title._text, "Info", "potental step slot"));
+                // console.log("Who der?", xmlObj.sb.lev1[i].steps.stepitem);
+
+                if(xmlObj.sb.lev1[i].hasOwnProperty("steps")){
+                    var stepArray = [];
+                    for(var s=0; s < xmlObj.sb.lev1[i].steps.stepitem.length; s++){
+                        // console.log("Got some text!", xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text);
                 
-                // continue;
+                        if(xmlObj.sb.lev1[i].steps.stepitem[s].note){
+                            stepArray.push(xmlObj.sb.lev1[i].steps.stepitem[s].note.para._text);
+                        }
+                        if(typeof xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text  === typeof "string"){
+                            stepArray.push("Step: "+xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text);
+                        }
+                        if(typeof xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text  === typeof []){
+                            stepArray.push("Step: "+xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text[0]+xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text[1]);
+                        }
+                    }
+                    fileInfo.stepArray = stepArray;
+                }
+                
             }
-            // fileInfo.steps.push(new StepObject("Doin", "ya", "mom!"));
+
         }
-    // } catch (error) {
-    //     console.log(error);
-    //     fileInfo.steps.push(new StepObject("There was", "a error", "in the try"));
-    // }
+    } catch (error) {
+        console.log(error);
+        fileInfo.steps.push(new StepObject("There was", "a error", "in the try"));
+    }
 
     
 
