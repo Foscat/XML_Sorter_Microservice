@@ -8,7 +8,7 @@ const BullStepNote_Parser = require("../exportParsers/bull_stepAndNotes");
 const BullStepRef_Parser = require("../exportParsers/bull_stepAndRef");
 const DynamicBulletinParser = require("../exportParsers/dynamic");
 
-module.exports ={
+module.exports = {
     getFile: (req,res) => {
         let fileString = req.params.fileString;
         let responseSender = res;

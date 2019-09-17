@@ -16,68 +16,6 @@ if(process.env.NODE_ENV === "production") {
 // Have express use routes
 app.use(routes);
 
-// const xmlFetchService = "https://young-tundra-61907.herokuapp.com";
-
-// getFile = async (fileString, responseSender) => {
-//     console.log("**TCL: getFile -> fileString**", fileString);
-
-//     fetch(`${xmlFetchService}/${fileString}`).then(res => {
-//             return res.text();
-//     })
-//     .then(returnString => {
-//         // console.log("**TCL: getFile -> returnString**", returnString);
-//         let convertedFile = converter.xml2js(returnString, {compact: true, spaces: 4});
-
-//         try{
-//             if(fileString === "sb31038"){
-//                 BullStep_Parser(convertedFile).then(sortedInfo=>{
-//                     return responseSender.status(202).send(sortedInfo);
-//                 })
-//             }
-//             if(fileString === "sb35034"){
-//                 BullStepRef_Parser(convertedFile).then(sortedInfo=>{
-//                     return responseSender.status(202).send(sortedInfo);
-//                 })
-//             }
-//             if(fileString === "sb42073"){
-//                 BullStepNote_Parser(convertedFile).then(sortedInfo=>{
-//                     return responseSender.status(202).send(sortedInfo);
-//                 });
-//             }
-//             else{
-//                 DynamicBulletinParser(convertedFile).then(sortedInfo=>{
-//                     return responseSender.status(202).send(sortedInfo);
-//                 })
-//             }
-//         }
-//         catch{
-//             // responseSender.status(404).send({problem: "The file name you send is was not reconized", attemptedFile: returnString});
-//             console.log("Catch function hit");
-//             // return "";
-//         }
-
-//     });
-// }
-
-// app.get("/getXml/:fileString", (req,res) => {
-//     // console.log("TCL: req.params", req.params);
-
-//     let fileString = req.params.fileString;
-//     // console.log("TCL: fileString", fileString)
-
-//     try{
-//         getFile(fileString, res)
-//     }
-//     catch(err){
-//         throw(console.error({
-//             header: "You hit an error",
-//             message: err.message,
-//             stack: err.stack
-//         }))
-//     }
-
-// })
-
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");

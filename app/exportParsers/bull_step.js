@@ -8,11 +8,11 @@ BullStep_Parser = async xmlObj => {
     let stepArray = [];
     for(var step=0; step < stepItems.length; step++){
         if(typeof stepItems[step].step.para._text === typeof ""){
-            stepArray.push(stepItems[step].step.para._text.trim());
+            stepArray.push("Step: "+stepItems[step].step.para._text.trim());
         }
         if(typeof stepItems[step].step.para._text === typeof []){
             // for(let it=0; it < stepItems[step].step.para._text.length; it++){
-                stepArray.push(stepItems[step].step.para._text[0].trim());
+                stepArray.push("Step: "+stepItems[step].step.para._text[0].trim()+stepItems[step].step.para._text[1].trim());
             // }
         }
     }

@@ -5,17 +5,14 @@
 var BullStepNote_Parser = async xmlObj => {
 
 
-    var stepAndNotes= {
-        steps:[],
-        notes:[]
-    };
+    let stepArray = [];
 
     var list = xmlObj.sb.lev1[1].steps.stepitem;
     for(var i=0; i< list.length; i++){
 
         if(list[i].note){
             // console.log("note")
-            stepAndNotes.notes.push(list[i].note.para._text)
+            stepArray.push(list[i].note.para._text)
         }
 
         if(list[i].step){
@@ -27,14 +24,14 @@ var BullStepNote_Parser = async xmlObj => {
 
                 for(var ti=0; ti < list[i].step.para._text.length; ti++){
 
-                    stepAndNotes.steps.push(list[i].step.para._text[ti]);
+                    stepArray.push("Step: "+list[i].step.para._text[ti]);
 
                 }
 
                 continue;
             }
 
-            stepAndNotes.steps.push(list[i].step.para._text);
+            stepArray.push("Step: "+list[i].step.para._text);
         }
 
 
@@ -61,7 +58,7 @@ var BullStepNote_Parser = async xmlObj => {
     var compleatedParse = {
         header: bullitenObj,
         models: modelArray,
-        info: stepAndNotes
+        stepArray: stepArray
     };
     // console.log("TCL: compleatedParse", compleatedParse);
     return compleatedParse;
