@@ -3,9 +3,6 @@ const converter = require("xml-js");
 const fetch = require("node-fetch");
 
 // Custom imports
-const BullStep_Parser = require("../exportParsers/bull_step");
-const BullStepNote_Parser = require("../exportParsers/bull_stepAndNotes");
-const BullStepRef_Parser = require("../exportParsers/bull_stepAndRef");
 const DynamicBulletinParser = require("../exportParsers/dynamic");
 
 module.exports = {

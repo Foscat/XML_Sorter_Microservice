@@ -32,17 +32,30 @@ DynamicBulletinParser = async xmlObj => {
 
                 if(xmlObj.sb.lev1[i].hasOwnProperty("steps")){
                     var stepArray = [];
+                    var text; 
+                    var trimmed;
                     for(var s=0; s < xmlObj.sb.lev1[i].steps.stepitem.length; s++){
                         // console.log("Got some text!", xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text);
                 
-                        if(xmlObj.sb.lev1[i].steps.stepitem[s].note){
-                            stepArray.push(xmlObj.sb.lev1[i].steps.stepitem[s].note.para._text);
+                        if(typeof xmlObj.sb.lev1[i].steps.stepitem[s].note  === typeof "string"){
+                            text = xmlObj.sb.lev1[i].steps.stepitem[s].note.para._text;
+                            trimmed = text.replace(/(\r\n|\n|\r)/g, ' ').trim();
+                            stepArray.push(trimmed);
+                        }
+                        if(typeof xmlObj.sb.lev1[i].steps.stepitem[s].note  === typeof []){
+                            text = xmlObj.sb.lev1[i].steps.stepitem[s].note.para._text[0].trim()+xmlObj.sb.lev1[i].steps.stepitem[s].note.para._text[1];
+                            trimmed = text.replace(/(\r\n|\n|\r)/g, ' ').trim();
+                            stepArray.push(trimmed);
                         }
                         if(typeof xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text  === typeof "string"){
-                            stepArray.push("Step: "+xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text);
+                            text = "Step: "+xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text;
+                            trimmed = text.replace(/(\r\n|\n|\r)/g, ' ').trim();
+                            stepArray.push(trimmed);
                         }
                         if(typeof xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text  === typeof []){
-                            stepArray.push("Step: "+xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text[0]+xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text[1]);
+                            text = "Step: "+xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text[0].trim()+xmlObj.sb.lev1[i].steps.stepitem[s].step.para._text[1];
+                            trimmed = text.replace(/(\r\n|\n|\r)/g, ' ').trim();
+                            stepArray.push(trimmed);
                         }
                     }
 
