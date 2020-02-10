@@ -9,17 +9,62 @@ Comes with basic dependencies so developers can choose to add redux or other dep
 **__Site is deployment ready out of the box__**
 
 ## How to use it
-Clone repo as local file refrence then copy files into your project. Then on server.js level open terminal and type *npm install* this will install backend dependencies and then it auto switches to client side and installs dependencies.
 
-Once dependencies are installed type *npm start* in termial. This will start the server then swithc to client and boot it. It will open up tab in your default browser.
+<pre><code>
+// Names of files that contain steps
+const filesWithSteps = [
+    "sb3125", "sb31038", "sb32054", "sb35034","sb42073", "sb42077", "sb46056", "sb49040", 
+    "sb4937", "sb54278", "sb54291", "sb54299", "sb54301", "sb54302", "sb54304", "sb54307", 
+    "sb54308", "sb54310", "sb54312", "sb54313", "sb60158", "sb60161", "sb60162", 
+    "sb60163", "sb60164", "sb60165", "sb72042", "sb83160"
+];
 
-**Be sure to link DB with mlab or other extension**
+// Phrases the user can say that will return step information
+const accaptedCommands = [
+    "replace crossmember", "rocker panel", "torque rod replacement", "tower bracket replacement", "filling procedure",
+    "oil inspection", "air leak inspection", "change brakes", "lever bearing removal", "DEF pressure connection",
+    "DEF line ice expansion", "powernet worksheet", "install camera", "telltale installation", "refrigerator circut",
+    "relay light installation", "ESC inspection", "ESC repair", "modify heated windsheild", "program ECU", 
+    "complexity harness installation", "cabin drip shield", "replace service jumper", "marker light gasket old",
+    "mirror air leak", "nosebeam water leak", "add floor support", "marker light gasket new", "splash cover installation",
+    "install vortex generator", "AC housing retrofit"
+];
 
-### Easy to build on top of
-* File structure designed to make large scale projects in organized way.
-* index.js files in folders to serve as directory routes for files in folder
-* Built in Crud functions and front end components as working example to copy and re-use
-* Comes with Bootstrap as cdn so it is easy use and replace
+// Microservice endpoints
+const parseFile = "https://sleepy-headland-90094.herokuapp.com/api/parseXml/";
+const stepTime = "https://sleepy-headland-90094.herokuapp.com/api/stepCalculator";
+const fileNum = "https://sleepy-headland-90094.herokuapp.com/api/getFileNum";
+
+// Post conversation array to get step timestamps and differances
+getTimes = () => {
+    return axios.post(stepTime, stepArray);
+}
+
+// Use file name to get step info from xml files
+getStepInfo = (fileName) => {
+    return axios.get(`${parseFile}/${fileName}`);
+}
+
+// Use phrase from user to get a file that fits description
+getFileNum = (command) => {
+    return axios.post(fileNum, {fileType: "sb", description: command})
+}
+
+// Test how a user can say something and the microservice handles the rest
+testTextCommand = (command) => {
+    console.log("Input phrase:", command)
+    getFileNum(command).then(res=>{
+        console.log("File name from phrase:", res.data);
+        getStepInfo(res.data).then(info=>{
+            console.log("Step info from phrase:", info.data);
+        });
+    });
+};
+
+// Change index of acceptedCommands to input phrases and get instructions back related to it.
+testTextCommand(accaptedCommands[12]);.
+</pre></code>
+
 
 ### Dependencies 
 
