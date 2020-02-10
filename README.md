@@ -21,12 +21,18 @@ const filesWithSteps = [
 
 // Phrases the user can say that will return step information
 const accaptedCommands = [
-    "replace crossmember", "rocker panel", "torque rod replacement", "tower bracket replacement", "filling procedure",
-    "oil inspection", "air leak inspection", "change brakes", "lever bearing removal", "DEF pressure connection",
-    "DEF line ice expansion", "powernet worksheet", "install camera", "telltale installation", "refrigerator circut",
-    "relay light installation", "ESC inspection", "ESC repair", "modify heated windsheild", "program ECU", 
-    "complexity harness installation", "cabin drip shield", "replace service jumper", "marker light gasket old",
-    "mirror air leak", "nosebeam water leak", "add floor support", "marker light gasket new", "splash cover installation",
+    "replace crossmember", "rocker panel", "torque rod replacement",
+    "tower bracket replacement", "filling procedure",
+    "oil inspection", "air leak inspection", "change brakes", 
+    "lever bearing removal", "DEF pressure connection",
+    "DEF line ice expansion", "powernet worksheet", 
+    "install camera", "telltale installation", "refrigerator circut",
+    "relay light installation", "ESC inspection", "ESC repair", 
+    "modify heated windsheild", "program ECU", 
+    "complexity harness installation", "cabin drip shield", 
+    "replace service jumper", "marker light gasket old",
+    "mirror air leak", "nosebeam water leak", "add floor support",
+    "marker light gasket new", "splash cover installation",
     "install vortex generator", "AC housing retrofit"
 ];
 
