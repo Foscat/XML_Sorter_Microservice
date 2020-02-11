@@ -1,12 +1,7 @@
-# MERN_app-template
-Boilerplate for full MERN stack apps
+# XML_Sorter_Microservice
+Microservice that parses XML files provides by another microservice. It returns a step array for use on the chat application.
+It will also calculate the total step time for a operation when given the chat log data.
 
-## Overview
-Full stack ready for deployment with built in CRUD functions and components.
-Made so the file structure is easy to follow and replicate to keep order as app increases in size.
-Comes with basic dependencies so developers can choose to add redux or other depencies on top off it. But allows for devs to have more choce on how app is built.
-
-**__Site is deployment ready out of the box__**
 
 ## How to use it
 
@@ -73,7 +68,7 @@ testTextCommand(accaptedCommands[12]);.
 
 
 ### Dependencies 
-
+#### These are part of the template that the service is built on
 **Back End**
 - Concurrently - Allows package JSON scripts to candle multiple commands
 - Nodemon - For when you are in development any save will refresh server to give live update of changes
@@ -93,4 +88,3 @@ testTextCommand(accaptedCommands[12]);.
 - React-scripts - Needed for react to work
 - Reactstrap - Special components made just for react
 
-See a working delpoyed version here: https://glacial-everglades-91451.herokuapp.com/
