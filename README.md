@@ -5,7 +5,15 @@ It will also calculate the total step time for a operation when given the chat l
 
 ## How to use it
 
+Copy and paste this code into a js file and npm install axios. Once installed run the file in node. 
+There will be a delay on first call because this microservice is on a free heroku app that sleeps after 30 min of inactivity.
+Changing the index of the accepted commands in the testTextCommand function will grab differant files based on the description.
+You will get a log of what file it got based on that command and will return shortly after with the instructions on how to do
+that task. 
+
 <pre><code>
+const axios = require("axios");
+
 // Names of files that contain steps
 const filesWithSteps = [
     "sb3125", "sb31038", "sb32054", "sb35034","sb42073", "sb42077", "sb46056", "sb49040", 
@@ -63,7 +71,7 @@ testTextCommand = (command) => {
 };
 
 // Change index of acceptedCommands to input phrases and get instructions back related to it.
-testTextCommand(accaptedCommands[12]);.
+testTextCommand(accaptedCommands[12]);
 </pre></code>
 
 
